@@ -1,0 +1,7 @@
+### Raiz
+
+GET http://localhost:8080
+
+### Home
+
+GET http://localhost:8080/home
