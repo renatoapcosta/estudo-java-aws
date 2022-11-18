@@ -1,7 +1,11 @@
 #!/bin/bash
 set -x
 
-awslocal sqs create-queue --queue-name ecs-singleshotbilling-buy-intent-dev --endpoint-url http://localhost:4566
+awslocal sqs create-queue --queue-name ecs-buy-intent-dlq-dev --endpoint-url http://localhost:4566
+
+awslocal sqs create-queue --queue-name ecs-singleshotbilling-buy-intent-dev \
+ --attributes '{"RedrivePolicy": "{\"deadLetterTargetArn\":\"arn:aws:sqs:us-east-1:000000000000:ecs-buy-intent-dlq-dev\",\"maxReceiveCount\":\"2\"}"}' \
+ --endpoint-url http://localhost:4566
 
 awslocal sns create-topic --name ecs-singleshotbilling-orquestrator-dev --endpoint-url http://localhost:4566
 awslocal sqs create-queue --queue-name ecs-singleshotbilling-generate-report-dev --endpoint-url http://localhost:4566

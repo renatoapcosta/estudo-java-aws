@@ -12,6 +12,7 @@ import javax.jms.TextMessage;
 @Component
 public class SQSConsumer {
 
+
     @JmsListener(destination = "ecs-singleshotbilling-buy-intent-dev")
     public void receiveBuyIntentEvent(TextMessage textMessage) throws JMSException, JsonProcessingException {
 
@@ -21,7 +22,7 @@ public class SQSConsumer {
             log.info("mensagem não pode ser processada");
             throw new RuntimeException("messagem contem erro");
         }
-        log.info(text);
+        log.info("Fim do processamento");
 
     }
 }
