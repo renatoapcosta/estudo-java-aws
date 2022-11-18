@@ -5,3 +5,7 @@ GET http://localhost:8080
 ### Home
 
 GET http://localhost:8080/home
+
+### Message
+
+GET http://localhost:8080/message?message=Teste renato
